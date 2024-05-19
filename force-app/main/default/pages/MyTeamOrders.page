@@ -1,7 +1,29 @@
-<apex:page controller="MyTeamOrdersController" >
-    <div>
-        <h1>
-            Sum of my team orders: <apex:outputText value="{!SumOders}" />
-        </h1>
-    </div>
+<apex:page controller="MyTeamOrdersController">
+       <apex:pageBlock >
+      <apex:pageBlockTable value="{!aggregateResultList}" var="order" title="Order List by Commercial" columns="3" align="center" styleClass="table table-striped">
+          <apex:facet name="header">Les commandes de mon équipe</apex:facet>
+          <apex:column >
+          <apex:facet name="header">Commercial</apex:facet>
+            <apex:outputText value="{!order['name']}"/>
+          </apex:column>
+          <apex:column >
+          <apex:facet name="header">Nombre de commandes</apex:facet>
+            <apex:outputText value="{!order['numOrders']}"/>  
+              </apex:column>
+          <apex:column >
+          <apex:facet name="header">Chiffre d'affaire</apex:facet>
+            <apex:outputText value="{!order['sum']}"/>  
+              </apex:column> 
+        </apex:pageBlockTable> 
+
+        <apex:pageBlockTable value="{!SumOrders}" var="sumorder" columns="2" align="center" styleClass="table table-striped">
+        <apex:column >
+          <apex:facet name="header">Chiffre d'affaire total de l'équipe</apex:facet>
+            <apex:outputText value="{!SumOrders}" />
+          </apex:column>
+           
+        </apex:pageBlockTable> 
+        
+        </apex:pageBlock> 
+    
 </apex:page>
