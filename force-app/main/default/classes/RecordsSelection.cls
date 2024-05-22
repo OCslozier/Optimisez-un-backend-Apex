@@ -14,14 +14,34 @@ public class RecordsSelection {
     public static List<OrderItem> getOrderItemsForAccounts(List<Account> accounts) {
         return [SELECT Id, Order.AccountId, PricebookEntryId, PricebookEntry.UnitPrice, Quantity FROM OrderItem WHERE Order.AccountId IN :accounts];
     }
-       
+    
+    // Méthode pour récupérer le montant total des commandes Ordered pour le rôle de l'utilisateur courant
+    public static Decimal getSumOrders() {
+        AggregateResult groupedResults = [
+            SELECT SUM(TotalAmount) total
+            FROM Order
+            WHERE Status = 'ordered'
+            AND CreatedBy.UserRoleId = :currentUser.UserRoleId
+        ];
+        return (Decimal)groupedResults.get('total');
+    }
+
+    // Méthode pour récupérer le montant total des commandes Ordered, le nombre total de commandes ordered le tout groupé par commercial pour le rôle de l'utilisateur courant
+    public static List<AggregateResult> getAggregateResultList() {
+        return [
+            SELECT CreatedBy.Name name, SUM(TotalAmount) sum, COUNT(Id) numOrders
+            FROM Order
+            WHERE Status = 'ordered'
+            AND CreatedBy.UserRoleId = :currentUser.UserRoleId
+            GROUP BY CreatedBy.Name
+        ];
+    }
+     
     // Méthode pour définir le rôle de l'utilisateur courant 
     public static User currentUser {
         get {
-            currentUser = [SELECT UserRoleID FROM User WHERE Id = :UserInfo.getUserId() LIMIT 1];
-            return currentUser;
+            return [SELECT Id, UserRoleId FROM User WHERE Id = :UserInfo.getUserId()];
         }
-        private set;
     }
   
 }
