@@ -1,9 +1,9 @@
 public class TestDataFactory {
 
     // Création de comptes
-    public static List<Account> createAccount(Integer sizeTest) {
+    public static List<Account> createAccount(Integer totalTestRecords) {
         List<Account> accList = new List<Account>();
-        for (Integer i = 0; i < sizeTest; i++) {
+        for (Integer i = 0; i < totalTestRecords; i++) {
             Account acc = new Account(
                 Name = 'Test Account ' + i,
                 Chiffre_d_affaire__c = 0
@@ -68,9 +68,9 @@ public class TestDataFactory {
     }
 
     // Création des commandes
-    public static List<Order> createOrder(List<Account> accList, Integer sizeTest, Id standardPricebookId) {
+    public static List<Order> createOrder(List<Account> accList, Integer totalTestRecords, Id standardPricebookId) {
         List<Order> ordList = new List<Order>();
-        for (Integer i = 0; i < sizeTest; i++) {
+        for (Integer i = 0; i < totalTestRecords; i++) {
             Order ord = new Order(
                 AccountId = accList[i].Id,
                 Status = 'Draft',

@@ -6,13 +6,13 @@ public class UpdateAccountsTurnOverBatchTest {
     static void testBulkUpdateAccountsTurnOverBatch() {
         
         // Génération des données de test
-        Integer sizeTest = 200;
+        Integer totalTestRecords = 200;
         Decimal unitPrice = 100;
         Decimal pricebookUnitPrice = 100;
         Decimal newUnitPrice = 900;
         
         // Création des comptes
-        List<Account> accList = TestDataFactory.createAccount(sizeTest);
+        List<Account> accList = TestDataFactory.createAccount(totalTestRecords);
         
         // Création des contrats
         List<Contract> conList = TestDataFactory.createContract(accList);
@@ -28,7 +28,7 @@ public class UpdateAccountsTurnOverBatchTest {
         
         // Création des commandes
         Id standardPricebookId = Test.getStandardPricebookId();
-        List<Order> ordList = TestDataFactory.createOrder(accList, sizeTest, standardPricebookId);
+        List<Order> ordList = TestDataFactory.createOrder(accList, totalTestRecords, standardPricebookId);
         
         // Création des lignes de commandes
         List<OrderItem> oiList = TestDataFactory.createOrderItems(ordList, pbe, unitPrice);

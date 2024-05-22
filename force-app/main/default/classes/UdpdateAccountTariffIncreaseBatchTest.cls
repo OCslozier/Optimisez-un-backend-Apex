@@ -6,13 +6,13 @@ public class UdpdateAccountTariffIncreaseBatchTest {
     static void testBulkUpdateAccountsWithTariffIncrease() {
         
         // Génération des données de test
-        Integer sizeTest = 200;
+        Integer totalTestRecords = 200;
         Decimal unitPrice = 100;
         Decimal pricebookUnitPrice = 100;
         Decimal newPriceBookUnitPrice = 700;
                
         // Création des comptes
-        List<Account> accList = TestDataFactory.createAccount(sizeTest);
+        List<Account> accList = TestDataFactory.createAccount(totalTestRecords);
         
         // Création des contrats
         List<Contract> conList = TestDataFactory.createContract(accList);
@@ -28,7 +28,7 @@ public class UdpdateAccountTariffIncreaseBatchTest {
         
         // Création des commandes
         Id standardPricebookId = Test.getStandardPricebookId();
-        List<Order> ordList = TestDataFactory.createOrder(accList, sizeTest, standardPricebookId);
+        List<Order> ordList = TestDataFactory.createOrder(accList, totalTestRecords, standardPricebookId);
         
         // Création des lignes de commandes
         List<OrderItem> oiList = TestDataFactory.createOrderItems(ordList, pbe, unitPrice);

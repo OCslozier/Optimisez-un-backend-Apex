@@ -5,12 +5,12 @@ private class OrderTriggerTest {
     @isTest 
     static void testOrderTrigger() {
         // Génération des données de test
-        Integer sizeTest = 1;
+        Integer totalTestRecords = 1;
         Decimal unitPrice = 100;
         Decimal pricebookUnitPrice = 100;
         
         // Création des comptes
-        List<Account> accList = TestDataFactory.createAccount(sizeTest);
+        List<Account> accList = TestDataFactory.createAccount(totalTestRecords);
         
         // Création des contrats
         List<Contract> conList = TestDataFactory.createContract(accList);
@@ -26,7 +26,7 @@ private class OrderTriggerTest {
         
         // Création des commandes
         Id standardPricebookId = Test.getStandardPricebookId();
-        List<Order> ordList = TestDataFactory.createOrder(accList, sizeTest, standardPricebookId);
+        List<Order> ordList = TestDataFactory.createOrder(accList, totalTestRecords, standardPricebookId);
         
         // Création des articles de commande
         List<OrderItem> oiList = TestDataFactory.createOrderItems(ordList, pbe, unitPrice);
@@ -56,12 +56,12 @@ private class OrderTriggerTest {
     @isTest 
     static void testBulkOrderTrigger() {
         // Génération des données de test
-        Integer sizeTest = 300;
+        Integer totalTestRecords = 300;
         Decimal unitPrice = 100;
         Decimal pricebookUnitPrice = 100;
         
         // Création des comptes
-        List<Account> accList = TestDataFactory.createAccount(sizeTest);
+        List<Account> accList = TestDataFactory.createAccount(totalTestRecords);
         
         // Création des contrats
         List<Contract> conList = TestDataFactory.createContract(accList);
@@ -77,7 +77,7 @@ private class OrderTriggerTest {
         
         // Création des commandes
         Id standardPricebookId = Test.getStandardPricebookId();
-        List<Order> ordList = TestDataFactory.createOrder(accList, sizeTest, standardPricebookId);
+        List<Order> ordList = TestDataFactory.createOrder(accList, totalTestRecords, standardPricebookId);
         
         // Création des articles de commande
         List<OrderItem> oiList = TestDataFactory.createOrderItems(ordList, pbe, unitPrice);
@@ -107,12 +107,12 @@ private class OrderTriggerTest {
     @isTest 
     static void testOrderTriggerWithoutRecords() {
         // Génération des données de test
-        Integer sizeTest = 0;
+        Integer totalTestRecords = 0;
         Decimal unitPrice = 100;
         Decimal pricebookUnitPrice = 100;
         
         // Création des comptes
-        List<Account> accList = TestDataFactory.createAccount(sizeTest);
+        List<Account> accList = TestDataFactory.createAccount(totalTestRecords);
         
         // Création des contrats
         List<Contract> conList = TestDataFactory.createContract(accList);
@@ -128,7 +128,7 @@ private class OrderTriggerTest {
         
         // Création des commandes
         Id standardPricebookId = Test.getStandardPricebookId();
-        List<Order> ordList = TestDataFactory.createOrder(accList, sizeTest, standardPricebookId);
+        List<Order> ordList = TestDataFactory.createOrder(accList, totalTestRecords, standardPricebookId);
         
         // Création des articles de commande
         List<OrderItem> oiList = TestDataFactory.createOrderItems(ordList, pbe, unitPrice);
