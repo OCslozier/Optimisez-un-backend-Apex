@@ -35,16 +35,16 @@ public class UdpdateAccountTariffIncreaseBatchTest {
         
         List<Order> orders = [SELECT Id, Status FROM Order];
         
-    // Mise à jour des commandes et du prix des lignes de commandes        
-    TestDataFactory.updateOrderToOrdered(ordList);
-        
+        // Mise à jour des commandes et du prix des lignes de commandes        
+        TestDataFactory.updateOrderToOrdered(ordList);
+            
         // Mise à jour de l'entrée au catalogue de prix
         TestDataFactory.updatePricebookEntryUnitPrice(pbe, newPriceBookUnitPrice);
         
         Test.startTest();
         
         UdpdateAccountTariffIncreaseBatch bulkUpdateAccountTariffObj=new UdpdateAccountTariffIncreaseBatch();
-    Database.executeBatch(bulkUpdateAccountTariffObj);
+        Database.executeBatch(bulkUpdateAccountTariffObj);
         
         Test.stopTest();
         

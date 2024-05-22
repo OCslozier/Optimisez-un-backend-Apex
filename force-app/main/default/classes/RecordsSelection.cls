@@ -9,6 +9,11 @@ public class RecordsSelection {
     public static List<Account> getAccounts(Set<Id> accountsIds) {
         return [SELECT Id, Chiffre_d_affaire__c FROM Account WHERE Id IN :accountsIds];
     }
+    
+    // Méthode pour récupérer les lignes de commandes associées aux commandes elles mêmes associées aux comptes
+    public static List<OrderItem> getOrderItemsForAccounts(List<Account> accounts) {
+        return [SELECT Id, Order.AccountId, PricebookEntryId, PricebookEntry.UnitPrice, Quantity FROM OrderItem WHERE Order.AccountId IN :accounts];
+    }
        
     // Méthode pour définir le rôle de l'utilisateur courant 
     public static User currentUser {
