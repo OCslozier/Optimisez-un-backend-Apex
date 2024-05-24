@@ -3,5 +3,5 @@
     <apiVersion>60.0</apiVersion>
     <availableInTouch>false</availableInTouch>
     <confirmationTokenRequired>false</confirmationTokenRequired>
-    <label>plop</label>
+    <label>MyTeamOrders</label>
 </ApexPage>
