@@ -10,6 +10,13 @@ public class RecordsSelection {
         return [SELECT Id, Chiffre_d_affaire__c FROM Account WHERE Id IN :accountsIds];
     }
     
+    // Méthode pour récupérer les comptes avec au moins une commande au statut "ordered"
+    public static Database.QueryLocator getAccountsWithOrderedStatus() {
+        return Database.getQueryLocator([
+            SELECT Id, Name FROM Account WHERE Id IN (SELECT AccountId FROM Order WHERE Status = 'Ordered')
+        ]);
+    }
+    
     // Méthode pour récupérer les lignes de commandes associées aux commandes elles mêmes associées aux comptes
     public static List<OrderItem> getOrderItemsForAccounts(List<Account> accounts) {
         return [SELECT Id, Order.AccountId, PricebookEntryId, PricebookEntry.UnitPrice, Quantity FROM OrderItem WHERE Order.AccountId IN :accounts];
